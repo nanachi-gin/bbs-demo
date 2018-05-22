@@ -3,19 +3,22 @@ var path = require("path");
 module.exports = {
     entry: "./src/pages/app.js",
     output: {
-        path: path.join(__dirname, "./public/js"),
+        path: path.join(__dirname, "./public/javascript"),
         filename: "bundle.js",
     },
     module: {
-        loaders: [{
+        rules: [{
             test: /\.js$/,
             loader: "babel-loader",
+            exclude: /node_modules/,
             query: {
                 presets: ['react', 'es2015']
             }
+
         }, {
             test: /\.jsx$/,
             loader: 'babel-loader',
+            exclude: /(node_modules|bower_components)/,
             query: {
                 presets: ['react', 'es2015']
             }

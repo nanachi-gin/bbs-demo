@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var TopicSchema = require('../schemas/topic');
+var TopicModel = mongoose.model('Topic', TopicSchema, 'topic');
 
-var Topic = new Schema(
-    
-);
+module.exports = TopicModel;
