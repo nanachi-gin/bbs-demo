@@ -1,19 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Topic = require('../src/models/topic');
-/*
 
-var test = new Topic({
-    content: 'sad'
-});
-test.save(function (err, doc) {
-    if (err) {
-        console.log(err);
-    }
-
-    console.log('success' + doc);
-});
-*/
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -35,15 +23,6 @@ router.get('/getAllTopic', (req, res, next) => {
 
 // add topic
 router.post('/addTopic', (req, res, next) => {
-    /*let newItem = new Topic(req.body);
-    console.log(newItem);
-    newItem.save(function (err, doc) {
-        if (err) {
-            console.log(err);
-        }
-
-        console.log('success' + doc);
-    });*/
     let newItem = req.body;
     Topic.create(newItem, (err) => {
         if (err) {
