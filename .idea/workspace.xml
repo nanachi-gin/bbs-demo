@@ -62,7 +62,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../react-demo/src/pages/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="108">
@@ -70,6 +70,15 @@
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../react-demo/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -122,6 +131,7 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/src/models/topic.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/../react-demo/.gitignore" />
       </list>
     </option>
   </component>
@@ -289,12 +299,12 @@
       <workItem from="1526988600780" duration="9200000" />
       <workItem from="1527057896521" duration="1712000" />
       <workItem from="1527071454334" duration="175000" />
-      <workItem from="1527162789513" duration="269000" />
+      <workItem from="1527162789513" duration="679000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77704000" />
+    <option name="totallyTimeSpent" value="78114000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -327,13 +337,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../react-demo/bin/www">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="90" selection-start-line="90" selection-end-line="90" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../react-demo/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -664,6 +667,13 @@
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../react-demo/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
         </state>
       </provider>
     </entry>
