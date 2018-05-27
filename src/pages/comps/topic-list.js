@@ -8,8 +8,9 @@ class TopicList extends React.Component {
             return (
                 <TopicItem
                     key = {index}
+                    title = {item.title}
                     content = {item.content}
-                    date = {item.publishDate}
+                    publishDate = {item.publishDate}
                 />
             )
         });

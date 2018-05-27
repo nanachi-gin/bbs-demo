@@ -1,8 +1,30 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: rgba(200, 211, 200, 0.42);
 }
 
 a {
   color: #00B7FF;
+}
+
+#app {
+  display: flex;
+}
+
+.container {
+  padding: 20px;
+}
+
+.topicItem {
+  background: white;
+  padding: 20px 10px 20px 10px;
+  width: 800px;
+  border-bottom: rgba(200, 211, 200, 0.42) solid 1px;
+}
+
+.itemTitle {
+  font-size: large;
+  font-weight: bold;
+  margin-right: 10px;
 }
