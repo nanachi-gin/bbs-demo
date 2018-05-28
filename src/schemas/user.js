@@ -1,4 +1,4 @@
-var mongoose = requie('mongoose');
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var User = new Schema({
@@ -8,8 +8,19 @@ var User = new Schema({
     password: {
         type: String
     },
-    type: {
-        type: Number,
-        default: 1
+    nickname: {
+        type: String
+    },
+    bio: {
+        type: String
+    },
+    avatar: {
+        type: String
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
     }
 });
+
+module.exports = User;

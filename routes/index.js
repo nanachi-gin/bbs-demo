@@ -1,13 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var Topic = require('../src/models/topic');
-
+var User = require('../src/models/user');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'BBS' });
 });
-
 
 // get all topic
 router.get('/getAllTopic', (req, res, next) => {
@@ -19,7 +18,6 @@ router.get('/getAllTopic', (req, res, next) => {
         }
     })
 });
-
 
 // add topic
 router.post('/addTopic', (req, res, next) => {
@@ -37,6 +35,21 @@ router.post('/addTopic', (req, res, next) => {
             })
         }
     })
+});
+
+//login
+router.post('/login', (req, res, next) => {
+    console.log(req.body);
+    let loginInfo = req.body;
+    User.findOne({'username': loginInfo.username, 'password': loginInfo.password},
+        (err, doc) => {
+            if (err) {
+                console.log("error" + err);
+            } else {
+                console.log(doc);
+            }
+        }
+    );
 });
 
 module.exports = router;

@@ -14,7 +14,6 @@ class TopicList extends React.Component {
                 />
             )
         });
-
         return (
             <div>{ topicItem }</div>
         )

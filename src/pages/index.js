@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery'
 import TopicList from './comps/topic-list'
+import TopicForm from "./comps/topic-form";
+import Login from "./comps/login-form";
 
 class Topic extends React.Component{
 
@@ -61,6 +63,9 @@ class Topic extends React.Component{
     //提交表单
     handleSubmit(event) {
         event.preventDefault();
+
+        console.log(event.target.value);
+
         if (this.refs.content.value === "") {
             this.refs.content.focus();
             this.setState({
@@ -72,7 +77,6 @@ class Topic extends React.Component{
             content: this.refs.content.value
         };
 
-/*        console.log(newTopic);*/
         this._addTopic(newTopic);
         this.refs.topicForm.reset();
     }
@@ -80,13 +84,18 @@ class Topic extends React.Component{
     render() {
         return (
             <div className="container">
-                <h2 className="header">Topic List</h2>
+                <h2 className="header">TLLL</h2>
                 <form color="topicForm" ref="topicForm"
                       onSubmit={this.handleSubmit.bind(this)}>
-                    <input ref="content" type="text"
-                           className="topicContent" />
+                    {/*<input ref="content" type="text"
+                           className="topicContent" />*/}
+                    <textarea ref="content" className="topicContent"
+                        defaultValue="有什么新鲜事?" />
+                    <input type="submit" value="发表"/>
                 </form>
+                {/*<TopicForm handleSubmit={this.handleSubmit.bind(this)}/>*/}
                 <TopicList topicList={this.state.topicList}/>
+                <Login/>
             </div>
         );
     }
