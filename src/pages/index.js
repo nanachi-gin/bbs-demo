@@ -22,7 +22,7 @@ class Topic extends React.Component{
         const that = this;
         $.ajax({
             url: '/getAllTopic',
-            type: 'get',
+            type: 'GET',
             dataType: 'json',
             success: data => {
                 const topicList = that.topicSort(data);
@@ -44,13 +44,14 @@ class Topic extends React.Component{
             dataType: 'json',
             data: newTopic,
             success: data => {
+                console.log(data);
                 const topicList = that.topicSort(data);
                 that.setState({
                     topicList
                 });
             },
             error: err => {
-                console.log(err);
+                console.log('_addTopic err' + err);
             }
         });
     }
@@ -95,7 +96,7 @@ class Topic extends React.Component{
                 </form>
                 {/*<TopicForm handleSubmit={this.handleSubmit.bind(this)}/>*/}
                 <TopicList topicList={this.state.topicList}/>
-                <Login/>
+                {/*<Login/>*/}
             </div>
         );
     }

@@ -21,26 +21,35 @@ class Login extends Component{
         this.setState(newState);
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
-        let data = {
-            username: this.state.username,
-            password: this.state.password
-        };
-
+    _login(data) {
         $.ajax({
-            url: '/login',
-            type: 'POST',
-            dataType: 'json',
+            url: "/login",
+            type: "POST",
+            dataType: "json",
             data: data,
-            success: data => {
+            success: res => {
+                if (res === null) {
+                    console.log("用户名或密码错误");
+                } else {
+                    this.props.history.push('/index');
+                }
             },
             error: err => {
-                console.log(err);
+                console.log('_login err' + err);
             }
         });
     }
 
+    handleSubmit(e) {
+        e.preventDefault();
+
+        const data = {
+            username: this.state.username,
+            password: this.state.password
+        };
+
+        this._login(data);
+    }
 
     render() {
         return (

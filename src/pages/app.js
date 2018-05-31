@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Topic from './index'
-ReactDOM.render(
-    <Topic/>,
-    document.getElementById("app")
+import { Link, Route, Switch, BrowserRouter} from 'react-router-dom';
+import PrivateRoute from "./privateRoute";
+
+ReactDOM.render((
+    <BrowserRouter>
+        <PrivateRoute/>
+    </BrowserRouter>
+    ), document.getElementById("app")
 );
