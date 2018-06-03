@@ -1,6 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: rgba(200, 211, 200, 0.42);
 }
 
@@ -8,23 +11,84 @@ a {
   color: #00B7FF;
 }
 
-#app {
-  display: flex;
+.show{
+  display: block;
+}
+
+.hidden{
+  display: none;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  height: 48px;
+  width: 100%;
+  background: white;
+  border-bottom: darkgrey 1px solid;
+}
+
+.form-search {
+  float: right;
 }
 
 .container {
-  padding: 20px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  width: 1000px;
+  margin: 0 auto;
+  padding: 56px 14px;
+
 }
 
-.topicItem {
+.main{
+  width: 590px;
+  margin: 0 10px;
+  overflow: hidden;
+}
+
+.box-form{
+  width: 100%;
+  height: 60px;
+  padding: 10px;
+  background: rgba(200, 211, 200, 0.42);
+  border-bottom: rgba(200, 211, 200, 0.42) 1px solid;
+}
+
+.user-avatar{
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+}
+
+.form-topic{
+  margin-right: 30px;
+}
+
+.textarea-content{
+  width: 90%;
+  height: 30px;
+  resize: none;
+  border-radius: 5px;
+}
+
+.topic-item {
   background: white;
-  padding: 20px 10px 20px 10px;
-  width: 800px;
+  padding: 10px;
+  width: 100%;
   border-bottom: rgba(200, 211, 200, 0.42) solid 1px;
 }
 
-.itemTitle {
+.topic-item-title {
   font-size: large;
   font-weight: bold;
   margin-right: 10px;
+}
+
+.user-panel {
+  width: 300px;
+  height: 300px;
+  background: white;
 }

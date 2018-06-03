@@ -2,13 +2,12 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
 var session = require('express-session');
+var logger = require('morgan');
+var app = express();
 
 //router
 var indexRouter = require('./routes/index');
-
-var app = express();
 
 var mongoose = require('mongoose');
 var db = mongoose.connect('mongodb://localhost:27017/bbs');
@@ -23,12 +22,28 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+    secret:'test',
+    resave: false,
+    saveUninitialized: true,
+    cookie:{maxAge: 60 * 1000 * 30}
+}));
+
 app.use('/', indexRouter);
+
+/*app.use(cookieParser('express_react_cookie'));
+app.use(session({
+    secret:'express_react_cookie',
+    resave: true,
+    saveUninitialized:true,
+    cookie: {maxAge: 60 * 1000 * 30}//过期时间
+}));*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {

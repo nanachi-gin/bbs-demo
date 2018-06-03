@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Link, Route, Switch, BrowserRouter} from 'react-router-dom';
+import { Link, Route, Switch, BrowserRouter, HashRouter} from 'react-router-dom';
 import PrivateRoute from "./privateRoute";
 
 ReactDOM.render((
-    <BrowserRouter>
+    <HashRouter>
         <PrivateRoute/>
-    </BrowserRouter>
+    </HashRouter>
     ), document.getElementById("app")
 );

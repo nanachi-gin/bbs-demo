@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link, Route, Switch, BrowserRouter} from 'react-router-dom';
 import Index from './index';
-import LoginPage from './comps/login-form';
+import LoginPage from './comps/login';
 
 class PrivateRoute extends React.Component {
     constructor(props) {
@@ -12,9 +12,8 @@ class PrivateRoute extends React.Component {
     render() {
         return (
             <div>
-                <Link to="/index">Index</Link>
-                <Route path="/" component={LoginPage}/>
-                <Route path="/index" component={Index} />
+                <Route exact={true} path="/" component={LoginPage}/>
+                <Route exact={true} path="/index" component={Index} />
             </div>
         );
     }

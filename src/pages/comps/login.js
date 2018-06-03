@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Link, Route, Switch, BrowserRouter} from 'react-router-dom';
 import $ from 'jquery';
 
 class Login extends Component{
@@ -12,6 +13,10 @@ class Login extends Component{
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        this._getUserInfo();
     }
 
     handleChange(e) {
@@ -40,6 +45,24 @@ class Login extends Component{
         });
     }
 
+    _getUserInfo() {
+        const that = this;
+        $.ajax({
+            url: '/getUserInfo',
+            type: 'GET',
+            dataType: 'json',
+            success: data => {
+                if (data.isLogin === 1) {
+                    this.props.history.push('/index');
+                }
+            },
+            error: err => {
+                console.log(err);
+            }
+
+        });
+    }
+
     handleSubmit(e) {
         e.preventDefault();
 
@@ -53,15 +76,18 @@ class Login extends Component{
 
     render() {
         return (
-            <form ref="loginForm" onSubmit={this.handleSubmit}>
-                <label>Username:</label>
-                <input type="text" name="username" ref="username"
-                 onChange={this.handleChange}/><br/>
-                <label>Password:</label>
-                <input type="password" name="password" ref="password"
-                onChange={this.handleChange}/><br/>
-                <input type="submit" value="登录"/>
-            </form>
+            <div>
+                <Link to="/index">Index</Link>
+                <form ref="loginForm" onSubmit={this.handleSubmit}>
+                    <label>Username:</label>
+                    <input type="text" name="username" ref="username"
+                           onChange={this.handleChange}/><br/>
+                    <label>Password:</label>
+                    <input type="password" name="password" ref="password"
+                           onChange={this.handleChange}/><br/>
+                    <input type="submit" value="登录"/>
+                </form>
+            </div>
         );
     }
 }

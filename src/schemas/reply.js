@@ -1,11 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var Topic = new Schema({
-    title: {
-        type: String,
-        default: 'test'
-    },
+var Reply = new Schema({
     state: {
         type: Number,
         default: 1
@@ -26,4 +22,4 @@ var Topic = new Schema({
     }
 }, { versionKey: false});
 
-module.exports = Topic;
+module.exports = Reply;

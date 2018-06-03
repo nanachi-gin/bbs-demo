@@ -1,21 +1,31 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
 import $ from 'jquery'
 import TopicList from './comps/topic-list'
-import TopicForm from "./comps/topic-form";
-import Login from "./comps/login-form";
+import Nav from "./comps/nav";
+import UserPanel from "./comps/user-panel";
 
 class Topic extends React.Component{
 
     constructor(props) {
         super(props);
         this.state = {
-            topicList: []
+            topicList: [],
+            now_nickname: '',
+            now_userId: '',
+            now_avatar: '',
+            history: '',
+            focus: false
         };
     }
-
+    
     componentDidMount() {
+        this._getUserInfo();
         this._getTopicList();
+    }
+
+    topicSort(topicList) {
+        topicList.reverse();
+        return topicList;
     }
 
     _getTopicList() {
@@ -25,7 +35,9 @@ class Topic extends React.Component{
             type: 'GET',
             dataType: 'json',
             success: data => {
-                const topicList = that.topicSort(data);
+                let topicList = that.topicSort(data);
+                console.log('getlist');
+                console.log(topicList.reverse());
                 that.setState({
                     topicList
                 });
@@ -44,8 +56,9 @@ class Topic extends React.Component{
             dataType: 'json',
             data: newTopic,
             success: data => {
-                console.log(data);
-                const topicList = that.topicSort(data);
+                let topicList = that.topicSort(data);
+                console.log('add-getlist');
+                console.log(topicList);
                 that.setState({
                     topicList
                 });
@@ -56,26 +69,68 @@ class Topic extends React.Component{
         });
     }
 
-    topicSort(topicList) {
-        topicList.reverse();
-        return topicList;
+    _getUserInfo() {
+        const that = this;
+        $.ajax({
+            url: '/getUserInfo',
+            type: 'GET',
+            dataType: 'json',
+            success: data => {
+                if (data.isLogin === 1) {
+                    that.setState({
+                        now_nickname: data.userInfo.nickname,
+                        now_userId: data.userInfo._id,
+                        now_avatar: data.userInfo.avatar
+                    });
+                }else {
+                    this.props.history.push('/');
+                }
+            },
+            error: err => {
+                console.log(err);
+            }
+        });
+    }
+
+/*    _logout() {
+        $.ajax({
+            url: '/logout',
+            typ: 'GET',
+            dataType: 'text',
+            success: data => {
+                console.log('logout!');
+                this.props.history.push('/');
+            },
+            error: err => {
+                console.log('_addLogout err' + err);
+            }
+        });
+    }*/
+
+    inputOnFocus(){
+        this.setState({ focus: true });
+        this.refs.content.value = '';
+    }
+    inputOnBlur(){
+        this.setState({ focus: false });
+        this.refs.content.value = '有什么新鲜事?';
     }
 
     //提交表单
     handleSubmit(event) {
         event.preventDefault();
 
-        console.log(event.target.value);
-
-        if (this.refs.content.value === "") {
+        /*if (this.refs.content.value === "") {
             this.refs.content.focus();
             this.setState({
             });
             return ;
-        }
+        }*/
 
         const newTopic = {
-            content: this.refs.content.value
+            content: this.refs.content.value,
+            byUserId: this.state.now_userId,
+            byUserNickname: this.state.now_nickname
         };
 
         this._addTopic(newTopic);
@@ -84,19 +139,32 @@ class Topic extends React.Component{
 
     render() {
         return (
-            <div className="container">
-                <h2 className="header">TLLL</h2>
-                <form color="topicForm" ref="topicForm"
-                      onSubmit={this.handleSubmit.bind(this)}>
-                    {/*<input ref="content" type="text"
-                           className="topicContent" />*/}
-                    <textarea ref="content" className="topicContent"
-                        defaultValue="有什么新鲜事?" />
-                    <input type="submit" value="发表"/>
-                </form>
-                {/*<TopicForm handleSubmit={this.handleSubmit.bind(this)}/>*/}
-                <TopicList topicList={this.state.topicList}/>
-                {/*<Login/>*/}
+            <div>
+                <Nav/>
+                <div className="container">
+    {/*                <button className="btn-logout"
+                            onClick={this._logout.bind(this)}>
+                        注销
+                    </button>
+                    <p>欢迎回来{this.state.now_nickname}</p>*/}
+                    <div className="main">
+                        <div className="box-form">
+                            <img className="user-avatar" src={this.state.now_avatar}/>
+                            <form ref="form-topic"
+                                  onSubmit={this.handleSubmit.bind(this)}>
+                                <textarea ref="content" className="textarea-content"
+                                          onFocus={this.inputOnFocus.bind(this)}
+                                          onBlur={this.inputOnBlur.bind(this)}
+                                      defaultValue="有什么新鲜事?" />
+                                <input className={this.state.focus ?
+                                    "show submit-topic" : "hidden submit-topic"}
+                                       type="submit" value="发表"/>
+                            </form>
+                        </div>
+                        <TopicList topicList={this.state.topicList}/>
+                    </div>
+                    <UserPanel />
+                </div>
             </div>
         );
     }

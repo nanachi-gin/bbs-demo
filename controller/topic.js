@@ -3,6 +3,7 @@ var TopicModel = require('../src/models/topic');
 class Topic {
     constructor() {}
     getAllTopic(req, res, next) {
+        let topicInfo = req.body;
         TopicModel.find({}).sort({'publishDate': -1}).exec((err, topicList) => {
             if (err) {
                 console.log(err);

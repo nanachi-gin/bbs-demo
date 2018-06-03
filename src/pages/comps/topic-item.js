@@ -8,10 +8,11 @@ class TopicItem extends React.Component {
 
     render() {
         return (
-            <div className="topicItem">
-                <span className="itemTitle">{ this.props.title }</span>
-                <span className="itemTime">{ this.props.publishDate }</span>
-                <p className="itemContent">{ this.props.content }</p>
+            <div className="topic-item">
+                <span className="topic-item-title">{ this.props.title }</span>
+                <span className="topic-item-time">{ this.props.publishDate }</span>
+                <span className="topic-item-nickname">{ this.props.nickname }</span>
+                <p className="topic-item-content">{ this.props.content }</p>
             </div>
         )
     }

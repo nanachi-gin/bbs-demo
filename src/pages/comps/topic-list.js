@@ -11,6 +11,7 @@ class TopicList extends React.Component {
                     title = {item.title}
                     content = {item.content}
                     publishDate = {item.publishDate}
+                    nickname = {item.byUserNickname}
                 />
             )
         });
