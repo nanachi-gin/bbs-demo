@@ -31,14 +31,6 @@ app.use(session({
 
 app.use('/', indexRouter);
 
-/*app.use(cookieParser('express_react_cookie'));
-app.use(session({
-    secret:'express_react_cookie',
-    resave: true,
-    saveUninitialized:true,
-    cookie: {maxAge: 60 * 1000 * 30}//过期时间
-}));*/
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

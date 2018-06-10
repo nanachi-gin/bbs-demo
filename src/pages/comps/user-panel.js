@@ -3,8 +3,10 @@ import $ from "jquery";
 
 class UserPanel extends React.Component{
     constructor(props){
-        super(props)
+        super(props);
     }
+
+    componentDidMount() {}
 
     _logout() {
         $.ajax({
@@ -13,7 +15,6 @@ class UserPanel extends React.Component{
             dataType: 'text',
             success: data => {
                 console.log('logout!');
-                /*this.props.history.push('/');*/
                 location.replace("/");
             },
             error: err => {
@@ -29,7 +30,8 @@ class UserPanel extends React.Component{
                         onClick={this._logout.bind(this)}>
                     注销
                 </button>
-                <p>欢迎回来{this.props.now_nickname}</p>
+                <img className="user-avatar" src={this.props.avatar} />
+                <p>欢迎回来{this.props.nickname}</p>
             </div>
         );
     }

@@ -21,6 +21,6 @@ var User = new Schema({
         type: Boolean,
         default: false
     }
-});
+}, { versionKey: false});
 
 module.exports = User;

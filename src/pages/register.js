@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import { Link, Route, Switch, BrowserRouter} from 'react-router-dom';
 import $ from 'jquery';
 
-class Login extends Component{
+class Register extends Component{
     constructor(props) {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            nickname: '',
+            bio: '',
+            avatar: 'https://gss0.baidu.com/7Ls0a8Sm2Q5IlBGlnYG/sys/portraitl/item/aa943726'
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -26,21 +29,32 @@ class Login extends Component{
         this.setState(newState);
     }
 
-    _login(data) {
+    handleSubmit(e) {
+        e.preventDefault();
+
+        const data = {
+            username: this.state.username,
+            password: this.state.password,
+            nickname: this.state.nickname,
+            bio: this.state.bio,
+            avatar: this.state.avatar
+        };
+
+        this._register(data);
+    }
+
+    _register(data) {
         $.ajax({
-            url: "/login",
+            url: "/register",
             type: "POST",
             dataType: "json",
             data: data,
             success: res => {
-                if (res === null) {
-                    console.log("用户名或密码错误");
-                } else {
-                    this.props.history.push('/index');
-                }
+                console.log(res);
+                this.props.history.push('/index');
             },
             error: err => {
-                console.log('_login err' + err);
+                alert(err.responseText);
             }
         });
     }
@@ -59,37 +73,36 @@ class Login extends Component{
             error: err => {
                 console.log(err);
             }
-
         });
-    }
-
-    handleSubmit(e) {
-        e.preventDefault();
-
-        const data = {
-            username: this.state.username,
-            password: this.state.password
-        };
-
-        this._login(data);
     }
 
     render() {
         return (
             <div>
-                <Link to="/index">Index</Link>
-                <form ref="loginForm" onSubmit={this.handleSubmit}>
+                <Link to="/">登录</Link>
+                <form ref="registerForm" onSubmit={this.handleSubmit}>
                     <label>Username:</label>
                     <input type="text" name="username" ref="username"
                            onChange={this.handleChange}/><br/>
                     <label>Password:</label>
                     <input type="password" name="password" ref="password"
                            onChange={this.handleChange}/><br/>
-                    <input type="submit" value="登录"/>
+                    <label>RePassword:</label>
+                    <input type="password" name="rePassword"/><br/>
+                    <label>nickname:</label>
+                    <input type="text" name="nickname" ref="nickname"
+                           onChange={this.handleChange}/><br/>
+                    <label>bio:</label>
+                    <input type="text" name="bio" ref="bio"
+                           onChange={this.handleChange}/><br/>
+                    <label>avatar:</label>
+                    <input type="text" name="avatar" ref="avatar"
+                           onChange={this.handleChange}/><br/>
+                    <input type="submit" value="注册"/>
                 </form>
             </div>
         );
     }
 }
 
-export default Login;
+export default Register;

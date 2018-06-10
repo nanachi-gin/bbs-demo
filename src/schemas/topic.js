@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var Topic = new Schema({
     title: {
         type: String,
-        default: 'test'
+        default: '无标题'
     },
     state: {
         type: Number,
@@ -22,6 +22,9 @@ var Topic = new Schema({
         type: String
     },
     byUserNickname: {
+        type: String
+    },
+    byUserAvatar: {
         type: String
     }
 }, { versionKey: false});

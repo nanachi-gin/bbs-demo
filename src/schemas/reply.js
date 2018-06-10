@@ -14,11 +14,20 @@ var Reply = new Schema({
         type: Date,
         default: Date.now
     },
+    fromTopic: {
+        type: String
+    },
     byUserId: {
         type: String
     },
     byUserNickname: {
         type: String
+    },
+    byUserAvatar: {
+        type: String
+    },
+    floor: {
+        type: Number
     }
 }, { versionKey: false});
 

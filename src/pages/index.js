@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import $ from 'jquery'
-import TopicList from './comps/topic-list'
+import TopicList from './comps/topic/topic-list'
 import Nav from "./comps/nav";
 import UserPanel from "./comps/user-panel";
 
@@ -36,8 +36,7 @@ class Topic extends React.Component{
             dataType: 'json',
             success: data => {
                 let topicList = that.topicSort(data);
-                console.log('getlist');
-                console.log(topicList.reverse());
+                topicList.reverse();
                 that.setState({
                     topicList
                 });
@@ -92,49 +91,28 @@ class Topic extends React.Component{
         });
     }
 
-/*    _logout() {
-        $.ajax({
-            url: '/logout',
-            typ: 'GET',
-            dataType: 'text',
-            success: data => {
-                console.log('logout!');
-                this.props.history.push('/');
-            },
-            error: err => {
-                console.log('_addLogout err' + err);
-            }
-        });
-    }*/
-
     inputOnFocus(){
         this.setState({ focus: true });
         this.refs.content.value = '';
     }
     inputOnBlur(){
         this.setState({ focus: false });
-        this.refs.content.value = '有什么新鲜事?';
     }
 
     //提交表单
     handleSubmit(event) {
         event.preventDefault();
 
-        /*if (this.refs.content.value === "") {
-            this.refs.content.focus();
-            this.setState({
-            });
-            return ;
-        }*/
-
         const newTopic = {
+            title: this.refs.title.value,
             content: this.refs.content.value,
             byUserId: this.state.now_userId,
-            byUserNickname: this.state.now_nickname
+            byUserNickname: this.state.now_nickname,
+            byUserAvatar: this.state.now_avatar
         };
 
         this._addTopic(newTopic);
-        this.refs.topicForm.reset();
+        this.refs.formTopic.reset();
     }
 
     render() {
@@ -142,28 +120,28 @@ class Topic extends React.Component{
             <div>
                 <Nav/>
                 <div className="container">
-    {/*                <button className="btn-logout"
-                            onClick={this._logout.bind(this)}>
-                        注销
-                    </button>
-                    <p>欢迎回来{this.state.now_nickname}</p>*/}
                     <div className="main">
                         <div className="box-form">
                             <img className="user-avatar" src={this.state.now_avatar}/>
-                            <form ref="form-topic"
+                            <form ref="formTopic" className="form-topic"
                                   onSubmit={this.handleSubmit.bind(this)}>
-                                <textarea ref="content" className="textarea-content"
-                                          onFocus={this.inputOnFocus.bind(this)}
-                                          onBlur={this.inputOnBlur.bind(this)}
-                                      defaultValue="有什么新鲜事?" />
-                                <input className={this.state.focus ?
-                                    "show submit-topic" : "hidden submit-topic"}
+                                <input type="text" ref="title" className="input-title"/>
+                                <div className="textarea-box"
+                                     onFocus={this.inputOnFocus.bind(this)}
+                                     onBlur={this.inputOnBlur.bind(this)}>
+                                    <textarea ref="content" className="textarea-content"
+                                              defaultValue="有什么新鲜事?" />
+                                </div>
+                                <input className="submit-topic"
                                        type="submit" value="发表"/>
                             </form>
                         </div>
                         <TopicList topicList={this.state.topicList}/>
                     </div>
-                    <UserPanel />
+                    <UserPanel
+                        nickname={this.state.now_nickname}
+                        avatar={this.state.now_avatar}
+                    />
                 </div>
             </div>
         );
