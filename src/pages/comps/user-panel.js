@@ -26,12 +26,26 @@ class UserPanel extends React.Component{
     render() {
         return(
             <div className="user-panel">
-                <button className="btn-logout"
-                        onClick={this._logout.bind(this)}>
-                    注销
-                </button>
-                <img className="user-avatar" src={this.props.avatar} />
-                <p>欢迎回来{this.props.nickname}</p>
+                <div className="user-panel-top">
+                    <img className="user-panel-avatar" src={this.props.avatar} />
+                </div>
+                <div className="user-panel-bottom">
+                    <p className="user-panel-nickname">{this.props.nickname}</p>
+                    <button className="btn-logout"
+                            onClick={this._logout.bind(this)}>
+                        注销
+                    </button>
+                    <table className="user-panel-table">
+                        <tr>
+                            <th>主题</th>
+                            <th>回复</th>
+                        </tr>
+                        <tr>
+                            <td>???</td>
+                            <td>???</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         );
     }

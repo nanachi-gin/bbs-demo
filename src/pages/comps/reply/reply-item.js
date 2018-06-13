@@ -10,11 +10,12 @@ class ReplyItem extends React.Component {
     render() {
         return (
             <div className="reply-item">
-                <span className="reply-item-title">{ this.props.title }</span>
-                <span className="reply-item-time">{ this.props.publishDate }</span>
-                <span className="reply-item-nickname">{ this.props.nickname }</span>
+                <div className="reply-item-user">
+                    <img className="topic-item-avatar" src={this.props.avatar} />
+                    <p className="reply-item-nickname">{ this.props.nickname }</p>
+                </div>
                 <p className="reply-item-content">{ this.props.content }</p>
-                <img className="topic-item-avatar" src={this.props.avatar} />
+                <p className="reply-item-time">{ this.props.publishDate }</p>
             </div>
         )
     }

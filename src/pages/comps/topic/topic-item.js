@@ -17,10 +17,12 @@ class TopicItem extends React.Component {
     render() {
         return (
             <div  className="topic-item">
-                <Link to={"/topic/" + this.props.topicId} >{ this.props.title }</Link>
-                <img src={this.props.avatar} className="topic-item-avatar"/>
+                <div className="topic-item-user">
+                    <img src={this.props.avatar} className="topic-item-avatar"/>
+                    <p className="topic-item-nickname">{ this.props.nickname }</p>
+                </div>
+                <Link to={"/topic/" + this.props.topicId} className="topic-item-title">{ this.props.title }</Link>
                 <span className="topic-item-time">{ this.props.publishDate }</span>
-                <span className="topic-item-nickname">{ this.props.nickname }</span>
                 <p className="topic-item-content">{ this.props.content }</p>
             </div>
         )

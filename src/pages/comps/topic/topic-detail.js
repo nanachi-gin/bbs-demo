@@ -29,11 +29,6 @@ class TopicDetail extends React.Component{
 
     }
 
-    replySort(arr) {
-        arr.reverse();
-        return arr;
-    }
-
     _getTopicDetail(data) {
         const that = this;
         $.ajax({
@@ -137,19 +132,28 @@ class TopicDetail extends React.Component{
         return(
             <div className="topic-detail">
                 <Nav/>
-                <h1>{this.state.title}</h1>
-                <p>{this.state.content}</p>
-                <p>{this.state.byUserNickname}</p>
-                <p>{this.state.publishDate}</p>
-                <img className="topic-item-avatar" src={this.state.byUserAvatar}/>
-                <form ref="formReply" className="form-reply"
-                      onSubmit={this.handleSubmit.bind(this)}>
-                    <div className="textarea-box">
-                         <textarea ref="contentReply" />
+                <div className="topic-detail-container">
+                    <div className="topic-detail-main">
+                        <div className="topic-detail-top">
+                            <div className="topic-detail-user">
+                                <img className="topic-detail-avatar" src={this.state.byUserAvatar}/>
+                                <p>{this.state.byUserNickname}</p>
+                            </div>
+                            <h2 className="topic-detail-title">{this.state.title}</h2>
+                            <p className="topic-detail-content">{this.state.content}</p>
+                            <p className="topic-detail-time">{this.state.publishDate}</p>
+                        </div>
+                        <ReplyList replyList={this.state.replyList}/>
+                        <h4>回复</h4>
+                        <form ref="formReply" className="form-reply"
+                              onSubmit={this.handleSubmit.bind(this)}>
+                            <div className="reply-textarea-box">
+                                <textarea ref="contentReply" />
+                            </div>
+                            <input type="submit" className="submit-reply" value="回复"/>
+                        </form>
                     </div>
-                    <input type="submit" value="回复"/>
-                </form>
-                <ReplyList replyList={this.state.replyList}/>
+                </div>
             </div>
         );
     }

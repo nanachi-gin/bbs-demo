@@ -77,16 +77,23 @@ class Login extends Component{
     render() {
         return (
             <div>
-                <Link to="/register">注册</Link>
-                <form ref="loginForm" onSubmit={this.handleSubmit}>
-                    <label>Username:</label>
-                    <input type="text" name="username" ref="username"
-                           onChange={this.handleChange}/><br/>
-                    <label>Password:</label>
-                    <input type="password" name="password" ref="password"
-                           onChange={this.handleChange}/><br/>
-                    <input type="submit" value="登录"/>
-                </form>
+                <div className="login-left">
+                    <img src="/images/main_page_logo.png"/>
+                </div>
+                <div className="login-container">
+                    <h1>查看这个世界正在发生的事</h1>
+                    <Link to="/register">还没有注册？立即加入>></Link>
+                    <form ref="loginForm" onSubmit={this.handleSubmit}
+                          className="login-form-container">
+                        <label>账号:</label>
+                        <input type="text" name="username" ref="username"
+                               onChange={this.handleChange}/><br/>
+                        <label>密码:</label>
+                        <input type="password" name="password" ref="password"
+                               onChange={this.handleChange}/><br/>
+                        <input type="submit" value="登录" className="submit-login"/>
+                    </form>
+                </div>
             </div>
         );
     }

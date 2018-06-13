@@ -117,7 +117,7 @@ class Topic extends React.Component{
 
     render() {
         return (
-            <div>
+            <div className="index-container">
                 <Nav/>
                 <div className="container">
                     <div className="main">
@@ -125,15 +125,16 @@ class Topic extends React.Component{
                             <img className="user-avatar" src={this.state.now_avatar}/>
                             <form ref="formTopic" className="form-topic"
                                   onSubmit={this.handleSubmit.bind(this)}>
+                                <label className="label-title">标题</label>
                                 <input type="text" ref="title" className="input-title"/>
+                                <input className="submit-topic"
+                                       type="submit" value="发表"/>
                                 <div className="textarea-box"
                                      onFocus={this.inputOnFocus.bind(this)}
                                      onBlur={this.inputOnBlur.bind(this)}>
                                     <textarea ref="content" className="textarea-content"
                                               defaultValue="有什么新鲜事?" />
                                 </div>
-                                <input className="submit-topic"
-                                       type="submit" value="发表"/>
                             </form>
                         </div>
                         <TopicList topicList={this.state.topicList}/>

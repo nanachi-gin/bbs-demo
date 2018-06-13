@@ -79,27 +79,34 @@ class Register extends Component{
     render() {
         return (
             <div>
-                <Link to="/">登录</Link>
-                <form ref="registerForm" onSubmit={this.handleSubmit}>
-                    <label>Username:</label>
-                    <input type="text" name="username" ref="username"
-                           onChange={this.handleChange}/><br/>
-                    <label>Password:</label>
-                    <input type="password" name="password" ref="password"
-                           onChange={this.handleChange}/><br/>
-                    <label>RePassword:</label>
-                    <input type="password" name="rePassword"/><br/>
-                    <label>nickname:</label>
-                    <input type="text" name="nickname" ref="nickname"
-                           onChange={this.handleChange}/><br/>
-                    <label>bio:</label>
-                    <input type="text" name="bio" ref="bio"
-                           onChange={this.handleChange}/><br/>
-                    <label>avatar:</label>
-                    <input type="text" name="avatar" ref="avatar"
-                           onChange={this.handleChange}/><br/>
-                    <input type="submit" value="注册"/>
-                </form>
+                <div className="register-left">
+                    <img src="/images/main_page_logo.png"/>
+                </div>
+                <div className="register-container">
+                    <h1>立即加入</h1>
+                    <Link to="/">已有账号？去登录>></Link>
+                    <form ref="registerForm" onSubmit={this.handleSubmit}
+                          className="register-form-container">
+                        <label>账号</label>
+                        <input type="text" name="username" ref="username"
+                               onChange={this.handleChange}/><br/>
+                        <label>密码</label>
+                        <input type="password" name="password" ref="password"
+                               onChange={this.handleChange}/><br/>
+                        <label>密码</label>
+                        <input type="password" name="rePassword"/><br/>
+                        <label>昵称</label>
+                        <input type="text" name="nickname" ref="nickname"
+                               onChange={this.handleChange}/><br/>
+                        <label>简介</label>
+                        <input type="text" name="bio" ref="bio"
+                               onChange={this.handleChange}/><br/>
+                        <label>头像</label>
+                        <input type="text" name="avatar" ref="avatar"
+                               onChange={this.handleChange}/><br/>
+                        <input type="submit" value="注册" className="submit-register"/>
+                    </form>
+                </div>
             </div>
         );
     }
