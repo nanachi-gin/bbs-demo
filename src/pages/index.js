@@ -75,11 +75,14 @@ class Topic extends React.Component{
             type: 'GET',
             dataType: 'json',
             success: data => {
+                console.log(data);
                 if (data.isLogin === 1) {
                     that.setState({
                         now_nickname: data.userInfo.nickname,
                         now_userId: data.userInfo._id,
-                        now_avatar: data.userInfo.avatar
+                        now_avatar: data.userInfo.avatar,
+                        now_topic_num: data.userInfo.topic_num,
+                        now_reply_num: data.userInfo.reply_num
                     });
                 }else {
                     this.props.history.push('/');
@@ -142,6 +145,8 @@ class Topic extends React.Component{
                     <UserPanel
                         nickname={this.state.now_nickname}
                         avatar={this.state.now_avatar}
+                        topicnum={this.state.now_topic_num}
+                        replynum={this.state.now_reply_num}
                     />
                 </div>
             </div>

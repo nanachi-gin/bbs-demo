@@ -1,10 +1,15 @@
 * {
   margin: 0;
   padding: 0;
+
 }
 
 body {
   background: #ffffff;
+}
+
+.app {
+    background: rgb(227, 230, 230);
 }
 
 a {
@@ -100,6 +105,7 @@ a:active {
 .container {
   display: -webkit-flex;
   display: flex;
+/*    background: rgb(227, 230, 230);*/
   -webkit-justify-content: center;
   justify-content: center;
   width: 1000px;
@@ -353,7 +359,8 @@ a:active {
   background: rgb(227, 230, 230);
   width: 100%;
     height: 100%;
-    position: relative;
+    position: absolute;
+    overflow:auto;
 }
 
 .topic-detail {
@@ -361,10 +368,12 @@ a:active {
     position: absolute;
     width: 100%;
     height: 100%;
+    overflow:auto;
 }
 
 .topic-detail-container {
   display: -webkit-flex;
+/*    background: rgb(227, 230, 230);*/
   display: flex;
   -webkit-justify-content: center;
   justify-content: center;

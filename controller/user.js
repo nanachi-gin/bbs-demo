@@ -1,5 +1,7 @@
 var express=require('express');
 var UserModel = require('../src/models/user');
+var TopicModel = require('../src/models/topic');
+var ReplyModel = require('../src/models/reply');
 
 class User {
     constructor() {}
@@ -16,7 +18,9 @@ class User {
                             username: doc.username,
                             nickname: doc.nickname,
                             bio: doc.bio,
-                            avatar: doc.avatar
+                            avatar: doc.avatar,
+                            topic_num: 0,
+                            reply_num: 0,
                         };
                         req.session.isLogin = 1;
                         req.session.user = resData;
@@ -48,7 +52,9 @@ class User {
                                     username: registerInfo.username,
                                     nickname: registerInfo.nickname,
                                     bio: registerInfo.bio,
-                                    avatar: registerInfo.avatar
+                                    avatar: registerInfo.avatar,
+                                    topic_num: 0,
+                                    reply_num: 0
                                 };
                                 req.session.isLogin = 1;
                                 req.session.user = resData;
@@ -74,12 +80,13 @@ class User {
     getUserInfo(req, res, next) {
         let resData = {
             isLogin: 0,
-            userInfo: null
+            userInfo: null,
         };
         if (req.session.isLogin === 1) {
             resData.isLogin = 1;
             resData.userInfo = req.session.user;
-        } else {}
+        }
+        console.log(resData);
         res.json(resData);
     }
 }

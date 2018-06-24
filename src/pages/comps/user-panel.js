@@ -41,8 +41,8 @@ class UserPanel extends React.Component{
                             <th>回复</th>
                         </tr>
                         <tr>
-                            <td>???</td>
-                            <td>???</td>
+                            <td>3</td>
+                            <td>5</td>
                         </tr>
                     </table>
                 </div>
